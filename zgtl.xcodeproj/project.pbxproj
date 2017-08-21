@@ -27,6 +27,7 @@
 		8468B2EC1F4AD122000C5346 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8468B2DF1F4AD122000C5346 /* View+MASAdditions.m */; };
 		8468B2ED1F4AD122000C5346 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8468B2E21F4AD122000C5346 /* ViewController+MASAdditions.m */; };
 		8468B2F01F4AD598000C5346 /* PaintEffectCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8468B2EF1F4AD598000C5346 /* PaintEffectCollectionCell.m */; };
+		8468B2F31F4AE05B000C5346 /* PreviewColorCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8468B2F21F4AE05B000C5346 /* PreviewColorCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		8468B2E21F4AD122000C5346 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		8468B2EE1F4AD598000C5346 /* PaintEffectCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintEffectCollectionCell.h; sourceTree = "<group>"; };
 		8468B2EF1F4AD598000C5346 /* PaintEffectCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintEffectCollectionCell.m; sourceTree = "<group>"; };
+		8468B2F11F4AE05B000C5346 /* PreviewColorCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviewColorCollectionCell.h; sourceTree = "<group>"; };
+		8468B2F21F4AE05B000C5346 /* PreviewColorCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviewColorCollectionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,8 @@
 				8468B29B1F4ACEC0000C5346 /* ViewController.m */,
 				8468B2EE1F4AD598000C5346 /* PaintEffectCollectionCell.h */,
 				8468B2EF1F4AD598000C5346 /* PaintEffectCollectionCell.m */,
+				8468B2F11F4AE05B000C5346 /* PreviewColorCollectionCell.h */,
+				8468B2F21F4AE05B000C5346 /* PreviewColorCollectionCell.m */,
 				8468B29D1F4ACEC0000C5346 /* Main.storyboard */,
 				8468B2A01F4ACEC0000C5346 /* Assets.xcassets */,
 				8468B2A21F4ACEC0000C5346 /* LaunchScreen.storyboard */,
@@ -364,6 +369,7 @@
 				8468B2EB1F4AD122000C5346 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				8468B2E91F4AD122000C5346 /* MASViewConstraint.m in Sources */,
 				8468B2E41F4AD122000C5346 /* MASCompositeConstraint.m in Sources */,
+				8468B2F31F4AE05B000C5346 /* PreviewColorCollectionCell.m in Sources */,
 				8468B2F01F4AD598000C5346 /* PaintEffectCollectionCell.m in Sources */,
 				8468B2EA1F4AD122000C5346 /* NSArray+MASAdditions.m in Sources */,
 				8468B29C1F4ACEC0000C5346 /* ViewController.m in Sources */,

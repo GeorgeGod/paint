@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Masonry.h"
 #import "PaintEffectCollectionCell.h"
+#import "PreviewColorCollectionCell.h"
 
 @interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *tlCollectionView; //top left CollectionView
@@ -138,16 +139,19 @@
     //下边的collectionView
     layout = [UICollectionViewFlowLayout new];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    layout.itemSize = CGSizeMake(150, 100);
+    layout.itemSize = CGSizeMake(150, 130);
     layout.minimumInteritemSpacing = 10;
     self.btCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-    [self.btCollectionView registerClass:[PaintEffectCollectionCell class] forCellWithReuseIdentifier:@"PaintEffectCollectionCell2"];
+    [self.btCollectionView registerClass:[PreviewColorCollectionCell class] forCellWithReuseIdentifier:@"PreviewColorCollectionCell"];
     self.btCollectionView.delegate = self;
     self.btCollectionView.dataSource = self;
     self.btCollectionView.backgroundColor = [UIColor clearColor];
+//    self.btCollectionView.layer.shadowColor = [UIColor darkGrayColor].CGColor;
+//    self.btCollectionView.layer.shadowOffset = CGSizeMake(2, 2);
+//    self.btCollectionView.layer.shadowOpacity = 0.8;
     [bv addSubview:self.btCollectionView];
     [self.btCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(bv).insets(UIEdgeInsetsMake(0, 150, 0, 0));
+        make.edges.equalTo(bv).insets(UIEdgeInsetsMake(0, 150, 0, 0)); //左侧空出150pt
     }];
 }
 
@@ -168,7 +172,7 @@
     }
     else if ([collectionView isEqual:self.btCollectionView]) {
         
-        PaintEffectCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PaintEffectCollectionCell2" forIndexPath:indexPath];
+        PreviewColorCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PreviewColorCollectionCell" forIndexPath:indexPath];
         
         return cell;
         
