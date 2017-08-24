@@ -61,6 +61,12 @@
 		5E7F755B1F45CF58002FB7CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E7F75591F45CF58002FB7CC /* LaunchScreen.storyboard */; };
 		5E7F75661F45CF58002FB7CC /* zgtlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7F75651F45CF58002FB7CC /* zgtlTests.m */; };
 		5E7F75711F45CF58002FB7CC /* zgtlUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7F75701F45CF58002FB7CC /* zgtlUITests.m */; };
+		8457726F1F4EAD0700DC1C9D /* NetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457726E1F4EAD0700DC1C9D /* NetWork.m */; };
+		845772721F4EB61000DC1C9D /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 845772711F4EB61000DC1C9D /* Token.m */; };
+		845772751F4EB7C600DC1C9D /* UIAlertController+msg.m in Sources */ = {isa = PBXBuildFile; fileRef = 845772741F4EB7C600DC1C9D /* UIAlertController+msg.m */; };
+		845772781F4EBAD400DC1C9D /* PaintProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 845772771F4EBAD400DC1C9D /* PaintProductModel.m */; };
+		8457727B1F4EBAE300DC1C9D /* PaintColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457727A1F4EBAE300DC1C9D /* PaintColorModel.m */; };
+		8457727E1F4EBB0200DC1C9D /* PaintListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457727D1F4EBB0200DC1C9D /* PaintListModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +168,18 @@
 		5E7F75701F45CF58002FB7CC /* zgtlUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zgtlUITests.m; sourceTree = "<group>"; };
 		5E7F75721F45CF58002FB7CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E1D888EEAC2F1FE7D54F274 /* Pods-zgtl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zgtl.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zgtl/Pods-zgtl.debug.xcconfig"; sourceTree = "<group>"; };
+		8457726D1F4EAD0700DC1C9D /* NetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork.h; sourceTree = "<group>"; };
+		8457726E1F4EAD0700DC1C9D /* NetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork.m; sourceTree = "<group>"; };
+		845772701F4EB61000DC1C9D /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
+		845772711F4EB61000DC1C9D /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Token.m; sourceTree = "<group>"; };
+		845772731F4EB7C600DC1C9D /* UIAlertController+msg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+msg.h"; sourceTree = "<group>"; };
+		845772741F4EB7C600DC1C9D /* UIAlertController+msg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+msg.m"; sourceTree = "<group>"; };
+		845772761F4EBAD400DC1C9D /* PaintProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaintProductModel.h; path = zgtl/PaintProductModel.h; sourceTree = SOURCE_ROOT; };
+		845772771F4EBAD400DC1C9D /* PaintProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaintProductModel.m; path = zgtl/PaintProductModel.m; sourceTree = SOURCE_ROOT; };
+		845772791F4EBAE300DC1C9D /* PaintColorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaintColorModel.h; path = zgtl/PaintColorModel.h; sourceTree = SOURCE_ROOT; };
+		8457727A1F4EBAE300DC1C9D /* PaintColorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaintColorModel.m; path = zgtl/PaintColorModel.m; sourceTree = SOURCE_ROOT; };
+		8457727C1F4EBB0200DC1C9D /* PaintListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaintListModel.h; path = zgtl/PaintListModel.h; sourceTree = SOURCE_ROOT; };
+		8457727D1F4EBB0200DC1C9D /* PaintListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaintListModel.m; path = zgtl/PaintListModel.m; sourceTree = SOURCE_ROOT; };
 		FC2007FA1D45D563F4E53701 /* Pods-zgtl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zgtl.release.xcconfig"; path = "Pods/Target Support Files/Pods-zgtl/Pods-zgtl.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -249,6 +267,12 @@
 		5E5289251F45DFF400EA94C7 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				845772761F4EBAD400DC1C9D /* PaintProductModel.h */,
+				845772771F4EBAD400DC1C9D /* PaintProductModel.m */,
+				845772791F4EBAE300DC1C9D /* PaintColorModel.h */,
+				8457727A1F4EBAE300DC1C9D /* PaintColorModel.m */,
+				8457727C1F4EBB0200DC1C9D /* PaintListModel.h */,
+				8457727D1F4EBB0200DC1C9D /* PaintListModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -369,6 +393,12 @@
 				5E7F75511F45CF58002FB7CC /* ViewController.h */,
 				5E7F75521F45CF58002FB7CC /* ViewController.m */,
 				5E7F75541F45CF58002FB7CC /* Main.storyboard */,
+				8457726D1F4EAD0700DC1C9D /* NetWork.h */,
+				8457726E1F4EAD0700DC1C9D /* NetWork.m */,
+				845772701F4EB61000DC1C9D /* Token.h */,
+				845772711F4EB61000DC1C9D /* Token.m */,
+				845772731F4EB7C600DC1C9D /* UIAlertController+msg.h */,
+				845772741F4EB7C600DC1C9D /* UIAlertController+msg.m */,
 				5E52892C1F45EEF100EA94C7 /* Resource */,
 				5E5289211F45DFF400EA94C7 /* Paint(涂料) */,
 				5E52891A1F45DBA000EA94C7 /* common */,
@@ -623,10 +653,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E6FAEBE1F4B158100CE0749 /* PaintEffectView.m in Sources */,
+				8457726F1F4EAD0700DC1C9D /* NetWork.m in Sources */,
 				5E52891D1F45DBBF00EA94C7 /* Common.m in Sources */,
 				5E395D191F49D00100E58C82 /* UIColor+HexExt.m in Sources */,
+				845772751F4EB7C600DC1C9D /* UIAlertController+msg.m in Sources */,
 				5E395D131F49CE5200E58C82 /* UIImage+ColorExt.m in Sources */,
 				5E7F75531F45CF58002FB7CC /* ViewController.m in Sources */,
+				845772781F4EBAD400DC1C9D /* PaintProductModel.m in Sources */,
 				5E6FAEC41F4B18ED00CE0749 /* ZBColorCollectionCell.m in Sources */,
 				5E52892A1F45E01D00EA94C7 /* PaintMainView.m in Sources */,
 				5E6FAECA1F4B192500CE0749 /* ZTColorCollectionCell.m in Sources */,
@@ -639,9 +672,12 @@
 				5E7F754D1F45CF58002FB7CC /* main.m in Sources */,
 				5E6FAEC71F4B190C00CE0749 /* ZTEffectCollectionCell.m in Sources */,
 				5E395D1C1F49D3BB00E58C82 /* PaintColorPictureController.m in Sources */,
+				8457727E1F4EBB0200DC1C9D /* PaintListModel.m in Sources */,
 				5E395D161F49CEAB00E58C82 /* PaintBottomLeftCollectionCell.m in Sources */,
 				5E5289271F45DFF400EA94C7 /* PaintMainController.m in Sources */,
 				5E6FAEBB1F4B156F00CE0749 /* PaintColorView.m in Sources */,
+				8457727B1F4EBAE300DC1C9D /* PaintColorModel.m in Sources */,
+				845772721F4EB61000DC1C9D /* Token.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

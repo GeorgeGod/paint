@@ -16,9 +16,11 @@
 @property (nonatomic, strong) UIButton *allProductBtn;
 //全部颜色按钮
 @property (nonatomic, strong) UIButton *allColorBtn;
-@property (nonatomic, strong) UICollectionView *topCollectionView;
-@property (nonatomic, strong) UICollectionView *bottomLeftCollectionView;
-@property (nonatomic, strong) UICollectionView *bottomRightCollectionView;
+
+@property (nonatomic, strong) NSArray *productArray;
+@property (nonatomic, strong) NSArray *colorArray;
+@property (nonatomic, strong) NSArray *listArray;
+
 @end
 
 @implementation PaintMainView
@@ -35,9 +37,8 @@
 -(instancetype)init {
     self = [super init];
     if (self) {
-//        self.backgroundColor = [UIColor clearColor];
+        
         self.backgroundColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
-
         
         [self addSubView];
     }
@@ -225,20 +226,19 @@
 
 // 代理方法
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    return 20;
     if ([collectionView isEqual:self.topCollectionView]) {
-        return 6;
+        return self.productArray.count;
     }
     else if ([collectionView isEqual:self.bottomLeftCollectionView]) {
-        return 9;
+        return self.colorArray.count;
     }
     else {
-        return 50;
+        return self.listArray.count;
     }
 }
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
+//-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+//    return 1;
+//}
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if ([collectionView isEqual:self.topCollectionView]) {
@@ -292,6 +292,18 @@
 }
 
 
+
+//设置数据
+-(void)setContentDataWithProductArr:(NSArray *)productArr colorArr:(NSArray *)colorArr listArr:(NSArray *)listArr {
+    
+    self.productArray = productArr;
+    self.colorArray = colorArr;
+    self.listArray = listArr;
+    
+    [self.topCollectionView reloadData];
+    [self.bottomLeftCollectionView reloadData];
+    [self.bottomRightCollectionView reloadData];
+}
 
 
 @end

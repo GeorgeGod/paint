@@ -16,6 +16,12 @@
 
 @interface PaintMainView : UIView
 
+@property (nonatomic, strong) UICollectionView *topCollectionView;
+@property (nonatomic, strong) UICollectionView *bottomLeftCollectionView;
+@property (nonatomic, strong) UICollectionView *bottomRightCollectionView;
+
 @property (nonatomic, weak) id<PaintMainDelegate>delegate;
+
+-(void)setContentDataWithProductArr:(NSArray *)productArr colorArr:(NSArray *)colorArr listArr:(NSArray *)listArr;
 
 @end

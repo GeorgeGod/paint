@@ -8,9 +8,22 @@
 
 #import "PaintColorPictureController.h"
 #import "PaintColorView.h"
+#import "PaintColorModel.h"
+#import "PaintProductModel.h"
+
 
 @interface PaintColorPictureController ()
 
+//左边的颜色数组
+@property (nonatomic, strong) NSArray<id> *colorArray;
+
+//右边的场景数组
+@property (nonatomic, strong) NSArray<id> *sceneArray;
+
+//下边预览的数组
+@property (nonatomic, strong) NSArray<id> *perviewArray;
+
+@property (nonatomic, strong) PaintColorView *paintColorV;
 @end
 
 @implementation PaintColorPictureController
@@ -21,14 +34,45 @@
     self.title = @"珍珠贝彩";
     
     
-    PaintColorView *paintColorV = [PaintColorView new];
+    self.paintColorV = [PaintColorView new];
     //    paintMainV.backgroundColor = [UIColor purpleColor];
-    [self.view addSubview:paintColorV];
+    [self.view addSubview:self.paintColorV];
     
-    [paintColorV mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.paintColorV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
     
+    [self requestData];
+    
 }
+
+-(void)requestData {
+    
+    //修改参数吧
+    NSDictionary *params = @{
+                             @"colorId":@(self.colorId),
+                             @"typeId":@(self.typeId),
+                             @"productId":@(self.productId),
+                             };
+    NetWork *net = [NetWork new];
+    [net PostDataWithUri:@"api/atz/productcolor/ColorPicture" params:params handler:^(NSDictionary *json) {
+        
+        NSLog(@"%@", json);
+        
+        if ([json[@"errocde"] intValue] == 0) {
+            
+            //        _productArray = [PaintProductModel mj_objectArrayWithKeyValuesArray:json[@"producttypelist"]];
+            //
+            //        _colorArray = [PaintColorModel mj_objectArrayWithKeyValuesArray:json[@"colorlist"]];
+            //
+            //        _listArray = [PaintListModel mj_objectArrayWithKeyValuesArray:json[@"productlist"]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //            [self.paintColorV setContentDataWithProductArr:_productArray colorArr:_colorArray listArr:_listArray];
+            });
+        }
+    }];
+}
+
 
 @end

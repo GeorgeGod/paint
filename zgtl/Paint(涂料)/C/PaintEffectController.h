@@ -10,4 +10,6 @@
 
 @interface PaintEffectController : UIViewController
 
+@property (nonatomic, assign) NSInteger typeId;
+
 @end

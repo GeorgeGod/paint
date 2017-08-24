@@ -10,4 +10,8 @@
 
 @interface PaintColorPictureController : UIViewController
 
+@property (nonatomic, assign) NSInteger colorId;
+@property (nonatomic, assign) NSInteger typeId;
+@property (nonatomic, assign) NSInteger productId;
+
 @end
