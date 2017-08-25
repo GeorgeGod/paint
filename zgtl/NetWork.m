@@ -7,7 +7,7 @@
 //
 
 #import "NetWork.h"
-#define BaseUrl @"http://doveatz.idea-source.net/"
+//#define BaseUrl @"http://doveatz.idea-source.net/"
 //#define TOKEN [[NSUserDefaults standardUserDefaults] objectForKey:@"token"]
 
 @implementation NetWork

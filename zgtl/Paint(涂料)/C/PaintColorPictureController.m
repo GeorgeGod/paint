@@ -7,21 +7,25 @@
 //  珍珠贝彩
 
 #import "PaintColorPictureController.h"
+#import "PaintEffectController.h"
 #import "PaintColorView.h"
-#import "PaintColorModel.h"
-#import "PaintProductModel.h"
+//#import "PaintColorModel.h"
+//#import "PaintProductModel.h"
+#import "ColorPaintModel.h"
+#import "ColorListModel.h"
+#import "ColorSceneModel.h"
 
 
-@interface PaintColorPictureController ()
+@interface PaintColorPictureController ()<PaintMainDelegate>
 
 //左边的颜色数组
-@property (nonatomic, strong) NSArray<id> *colorArray;
+@property (nonatomic, strong) NSArray<ColorListModel *> *colorArray;
 
 //右边的场景数组
-@property (nonatomic, strong) NSArray<id> *sceneArray;
+@property (nonatomic, strong) NSArray<ColorPaintModel *> *bigPicArray;
 
 //下边预览的数组
-@property (nonatomic, strong) NSArray<id> *perviewArray;
+@property (nonatomic, strong) NSArray<ColorSceneModel *> *perviewArray;
 
 @property (nonatomic, strong) PaintColorView *paintColorV;
 @end
@@ -36,6 +40,7 @@
     
     self.paintColorV = [PaintColorView new];
     //    paintMainV.backgroundColor = [UIColor purpleColor];
+    self.paintColorV.delegate = self;
     [self.view addSubview:self.paintColorV];
     
     [self.paintColorV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,17 +66,31 @@
         
         if ([json[@"errocde"] intValue] == 0) {
             
-            //        _productArray = [PaintProductModel mj_objectArrayWithKeyValuesArray:json[@"producttypelist"]];
-            //
-            //        _colorArray = [PaintColorModel mj_objectArrayWithKeyValuesArray:json[@"colorlist"]];
-            //
-            //        _listArray = [PaintListModel mj_objectArrayWithKeyValuesArray:json[@"productlist"]];
+            _colorArray = [ColorListModel mj_objectArrayWithKeyValuesArray:json[@"productlist"]];
+            
+            _bigPicArray = [ColorPaintModel mj_objectArrayWithKeyValuesArray:json[@"picturelist"]];
+            
+            _perviewArray = [ColorSceneModel mj_objectArrayWithKeyValuesArray:json[@"scenetypelist"]];
+            
+            
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                //            [self.paintColorV setContentDataWithProductArr:_productArray colorArr:_colorArray listArr:_listArray];
+                
+                [self.paintColorV setContentDataWithColorArr:_colorArray bigPicArr:_bigPicArray perviewArr:_perviewArray];
             });
         }
     }];
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //获取模型
+    ColorSceneModel *model = _perviewArray[indexPath.row];
+    
+    PaintEffectController *质感涂料 = [PaintEffectController new];
+    质感涂料.typeId = model.id;
+    质感涂料.productId = self.productId;
+    [self.navigationController pushViewController:质感涂料 animated:YES];
 }
 
 

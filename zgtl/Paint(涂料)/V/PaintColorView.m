@@ -10,6 +10,10 @@
 #import "ZBEffectCollectionCell.h"
 #import "ZBColorCollectionCell.h"
 
+#import "ColorListModel.h"
+#import "ColorPaintModel.h"
+#import "ColorSceneModel.h"
+
 @interface PaintColorView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *tlCollectionView; //top left CollectionView
 @property (nonatomic, strong) UICollectionView *btCollectionView; //bottom CollectionView
@@ -17,6 +21,16 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *colleBtn; //收藏按钮
 @property (nonatomic, strong) UIButton *shareBtn; //分享按钮
+
+
+//左边的颜色数组
+@property (nonatomic, strong) NSArray<ColorListModel *> *colorArray;
+
+//右边的场景数组
+@property (nonatomic, strong) NSArray<ColorPaintModel *> *bigPicArray;
+
+//下边预览的数组
+@property (nonatomic, strong) NSArray<ColorSceneModel *> *perviewArray;
 
 @end
 @implementation PaintColorView
@@ -88,7 +102,7 @@
         make.edges.equalTo(trv).insets(UIEdgeInsetsMake(0, 0, 40, 0));
     }];
     //修改预览图片
-    self.trImageView.image = [UIImage imageNamed:@"effect"];
+//    self.trImageView.image = [UIImage imageNamed:@"effect"];
     
     
     self.titleLabel = [UILabel new];
@@ -190,11 +204,15 @@
     [bv.layer insertSublayer:gradient atIndex:10];
 }
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
+//-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+//    return 1;
+//}
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    if ([collectionView isEqual:self.tlCollectionView]) {
+        return self.colorArray.count;
+    } else {
+        return self.perviewArray.count;
+    }
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -202,12 +220,10 @@
         
         ZBEffectCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZBEffectCollectionCell" forIndexPath:indexPath];
         
-        if (indexPath.row % 2 == 0) {
-            cell.imageView.image = [UIImage imageWithColor:[UIColor colorwithHex:@"EB6100"]];
-        }
-        else {
-            cell.imageView.image = [UIImage imageWithColor:[UIColor colorwithHex:@"FF0000"]];
-        }
+        
+        ColorListModel *model = self.colorArray[indexPath.row];
+        NSURL *url = [NSURL URLWithString:[BaseUrl stringByAppendingFormat:@"%@", model.url]];
+        [cell.imageView sd_setImageWithURL:url];
         
         return cell;
     }
@@ -215,7 +231,13 @@
         
         ZBColorCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZBColorCollectionCell" forIndexPath:indexPath];
         
-        cell.imageView.image = [UIImage imageNamed:@"pic2"];
+        
+        //获取预览的模型
+        ColorSceneModel *model = self.perviewArray[indexPath.row];
+        
+        //将图片和标题展示出来
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"pic2"]];
+        cell.titleLabel.text = model.typeName;
         
         return cell;
         
@@ -223,5 +245,49 @@
     return nil;
 }
 
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([collectionView isEqual:self.tlCollectionView]) {
+        //切换大图
+        [self refreshBigPictureWithRow:indexPath.row];
+        
+    } else {
+        [self.delegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+    }
+}
+
+
+/**
+ 刷新右侧的大图
+
+ @param row 根据左侧选择的第几个cell的行号
+ */
+-(void)refreshBigPictureWithRow:(NSInteger)row {
+    if (self.bigPicArray.count > row) {
+        ColorPaintModel *model = self.bigPicArray[row];
+        NSURL *url = [NSURL URLWithString:[BaseUrl stringByAppendingFormat:@"%@", model.url]];
+        [self.trImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"effect"]];
+        self.titleLabel.text = model.mainTitle;
+        
+    } else {
+        self.trImageView.image = [UIImage imageNamed:@"effect"];
+        self.titleLabel.text = @"__";
+    }
+}
+
+
+-(void)setContentDataWithColorArr:(NSArray *)colorArr bigPicArr:(NSArray *)bigPicArr perviewArr:(NSArray *)perviewArr {
+    
+    self.colorArray = colorArr;
+    self.bigPicArray = bigPicArr;
+    self.perviewArray = perviewArr;
+    
+    [self.tlCollectionView reloadData];
+    [self.btCollectionView reloadData];
+    
+    //默认选中第一个
+    [self refreshBigPictureWithRow:0];
+}
 
 @end

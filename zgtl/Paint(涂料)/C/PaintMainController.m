@@ -59,20 +59,22 @@
 //        make.edges.equalTo(self.view);
 //    }];
     
-//    NetWork *net = [NetWork new];
-    //获取token
-//    [net PostDataWithUri:@"api/atz/apploginauth/token" params:@{@"username":@"admin", @"password":@"123456"} handler:^(NSDictionary *json) {
-//        
-//        NSLog(@"%@", json);
-//        
-//        if ([json[@"errcode"] intValue] == 0) {
-//            [Token saveToken:json[@"access_token"]];
-//        } else {
-//            [UIAlertController alertWithMsg:@"token获取失败"];
-//        }
-//    }];
+    NetWork *net = [NetWork new];
+//    获取token
+    [net PostDataWithUri:@"api/atz/apploginauth/token" params:@{@"username":@"admin", @"password":@"123456"} handler:^(NSDictionary *json) {
+        
+        NSLog(@"%@", json);
+        
+        if ([json[@"errcode"] intValue] == 0) {
+            [Token saveToken:json[@"access_token"]];
+            
+            [self requestData];
+        } else {
+            [UIAlertController alertWithMsg:@"token获取失败"];
+        }
+    }];
     
-    [self requestData];
+//    [self requestData];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,17 +88,22 @@
         [self requestData];
     }
     else {
-        if (indexPath.row == 0) {
+        
+        PaintListModel *model = self.listArray[indexPath.row];
+        
+//        if (indexPath.row == 0) {
 //        if (self.colorId == 0) {
-            PaintEffectController *质感涂料 = [PaintEffectController new];
-            
-            [self.navigationController pushViewController:质感涂料 animated:YES];
-        }
-        else {
+//            PaintEffectController *质感涂料 = [PaintEffectController new];
+//        
+//            [self.navigationController pushViewController:质感涂料 animated:YES];
+//        }
+//        else {
             PaintColorPictureController *珍珠贝彩 = [PaintColorPictureController new];
-            
+        珍珠贝彩.colorId = model.colorId;
+        珍珠贝彩.typeId = model.typeId;
+        珍珠贝彩.productId = model.id;
             [self.navigationController pushViewController:珍珠贝彩 animated:YES];
-        }
+//        }
     }
     
 //    if (indexPath.row == 0) {

@@ -10,6 +10,10 @@
 #import "PaintTopCollectionCell.h"
 #import "PaintBottomLeftCollectionCell.h"
 
+#import "PaintProductModel.h"
+#import "PaintColorModel.h"
+#import "PaintListModel.h"
+
 @interface PaintMainView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 //全部产品按钮
@@ -17,9 +21,13 @@
 //全部颜色按钮
 @property (nonatomic, strong) UIButton *allColorBtn;
 
-@property (nonatomic, strong) NSArray *productArray;
-@property (nonatomic, strong) NSArray *colorArray;
-@property (nonatomic, strong) NSArray *listArray;
+//@property (nonatomic, strong) NSArray *productArray;
+//@property (nonatomic, strong) NSArray *colorArray;
+//@property (nonatomic, strong) NSArray *listArray;
+
+@property (nonatomic, strong) NSArray<PaintProductModel *> *productArray;
+@property (nonatomic, strong) NSArray<PaintColorModel *> *colorArray;
+@property (nonatomic, strong) NSArray<PaintListModel *> *listArray;
 
 @end
 
@@ -244,9 +252,10 @@
     if ([collectionView isEqual:self.topCollectionView]) {
         PaintTopCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"topCellID" forIndexPath:indexPath];
         
-        cell.backgroundColor = randomColor();
         
-        cell.imageView.image = [UIImage imageNamed:@"logo1"];
+        PaintProductModel *model = self.productArray[indexPath.row];
+        NSURL *url = [NSURL URLWithString:[BaseUrl stringByAppendingFormat:@"%@", model.url]];
+        [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"logo1"]];
         
         return cell;
         
@@ -255,14 +264,11 @@
         
         PaintBottomLeftCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"bLeftCellID" forIndexPath:indexPath];
         
-        NSArray *colorArr = @[@"FF0000", @"FF9C00", @"FFFF00", @"00FF00", @"00FFFF", @"0000FF", @"FF00FF", @"707070", @"F4F4EA"];
         
-        if (indexPath.row < colorArr.count) {
-            cell.imageView.image = [UIImage imageWithColor:[UIColor colorwithHex:colorArr[indexPath.row]]];
-        }
-        else {
-            cell.imageView.backgroundColor = [UIColor clearColor];
-        }
+        PaintColorModel *model = self.colorArray[indexPath.row];
+        
+        NSURL *url = [NSURL URLWithString:[BaseUrl stringByAppendingFormat:@"%@", model.url]];
+        [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"logo1"]];
         
         return cell;
         

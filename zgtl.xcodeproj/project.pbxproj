@@ -67,6 +67,10 @@
 		845772781F4EBAD400DC1C9D /* PaintProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 845772771F4EBAD400DC1C9D /* PaintProductModel.m */; };
 		8457727B1F4EBAE300DC1C9D /* PaintColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457727A1F4EBAE300DC1C9D /* PaintColorModel.m */; };
 		8457727E1F4EBB0200DC1C9D /* PaintListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457727D1F4EBB0200DC1C9D /* PaintListModel.m */; };
+		847A32041F4FC3BD000C4224 /* ColorPaintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A32031F4FC3BD000C4224 /* ColorPaintModel.m */; };
+		847A32071F4FC4A4000C4224 /* ColorListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A32061F4FC4A4000C4224 /* ColorListModel.m */; };
+		847A320A1F4FC4C9000C4224 /* ColorSceneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A32091F4FC4C9000C4224 /* ColorSceneModel.m */; };
+		847A328B1F4FF6E4000C4224 /* PaintEffectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A328A1F4FF6E4000C4224 /* PaintEffectModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +184,14 @@
 		8457727A1F4EBAE300DC1C9D /* PaintColorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaintColorModel.m; path = zgtl/PaintColorModel.m; sourceTree = SOURCE_ROOT; };
 		8457727C1F4EBB0200DC1C9D /* PaintListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaintListModel.h; path = zgtl/PaintListModel.h; sourceTree = SOURCE_ROOT; };
 		8457727D1F4EBB0200DC1C9D /* PaintListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaintListModel.m; path = zgtl/PaintListModel.m; sourceTree = SOURCE_ROOT; };
+		847A32021F4FC3BD000C4224 /* ColorPaintModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPaintModel.h; sourceTree = "<group>"; };
+		847A32031F4FC3BD000C4224 /* ColorPaintModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPaintModel.m; sourceTree = "<group>"; };
+		847A32051F4FC4A4000C4224 /* ColorListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorListModel.h; sourceTree = "<group>"; };
+		847A32061F4FC4A4000C4224 /* ColorListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorListModel.m; sourceTree = "<group>"; };
+		847A32081F4FC4C9000C4224 /* ColorSceneModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorSceneModel.h; sourceTree = "<group>"; };
+		847A32091F4FC4C9000C4224 /* ColorSceneModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorSceneModel.m; sourceTree = "<group>"; };
+		847A32891F4FF6E4000C4224 /* PaintEffectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintEffectModel.h; sourceTree = "<group>"; };
+		847A328A1F4FF6E4000C4224 /* PaintEffectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintEffectModel.m; sourceTree = "<group>"; };
 		FC2007FA1D45D563F4E53701 /* Pods-zgtl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zgtl.release.xcconfig"; path = "Pods/Target Support Files/Pods-zgtl/Pods-zgtl.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -273,6 +285,14 @@
 				8457727A1F4EBAE300DC1C9D /* PaintColorModel.m */,
 				8457727C1F4EBB0200DC1C9D /* PaintListModel.h */,
 				8457727D1F4EBB0200DC1C9D /* PaintListModel.m */,
+				847A32021F4FC3BD000C4224 /* ColorPaintModel.h */,
+				847A32031F4FC3BD000C4224 /* ColorPaintModel.m */,
+				847A32051F4FC4A4000C4224 /* ColorListModel.h */,
+				847A32061F4FC4A4000C4224 /* ColorListModel.m */,
+				847A32081F4FC4C9000C4224 /* ColorSceneModel.h */,
+				847A32091F4FC4C9000C4224 /* ColorSceneModel.m */,
+				847A32891F4FF6E4000C4224 /* PaintEffectModel.h */,
+				847A328A1F4FF6E4000C4224 /* PaintEffectModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -655,6 +675,9 @@
 				5E6FAEBE1F4B158100CE0749 /* PaintEffectView.m in Sources */,
 				8457726F1F4EAD0700DC1C9D /* NetWork.m in Sources */,
 				5E52891D1F45DBBF00EA94C7 /* Common.m in Sources */,
+				847A320A1F4FC4C9000C4224 /* ColorSceneModel.m in Sources */,
+				847A32071F4FC4A4000C4224 /* ColorListModel.m in Sources */,
+				847A328B1F4FF6E4000C4224 /* PaintEffectModel.m in Sources */,
 				5E395D191F49D00100E58C82 /* UIColor+HexExt.m in Sources */,
 				845772751F4EB7C600DC1C9D /* UIAlertController+msg.m in Sources */,
 				5E395D131F49CE5200E58C82 /* UIImage+ColorExt.m in Sources */,
@@ -665,6 +688,7 @@
 				5E6FAECA1F4B192500CE0749 /* ZTColorCollectionCell.m in Sources */,
 				5E6FAEC11F4B18C800CE0749 /* ZBEffectCollectionCell.m in Sources */,
 				5E5289441F45EF3100EA94C7 /* PaintTopCollectionCell.m in Sources */,
+				847A32041F4FC3BD000C4224 /* ColorPaintModel.m in Sources */,
 				5E395D251F49D49000E58C82 /* BindEmailView.m in Sources */,
 				5E7F75501F45CF58002FB7CC /* AppDelegate.m in Sources */,
 				5E395D1F1F49D3E300E58C82 /* PaintEffectController.m in Sources */,

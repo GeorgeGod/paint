@@ -7,7 +7,14 @@
 //  质感涂料
 
 #import <UIKit/UIKit.h>
+#import "PaintMainView.h"
 
 @interface PaintEffectView : UIView
+
+
+@property (nonatomic, weak ) id<PaintMainDelegate>delegate;
+
+-(void)setContentDataWithPaintArr:(NSArray *)paintArr bigPicArr:(NSArray *)bigPicArr perviewArr:(NSArray *)perviewArr;
+
 
 @end

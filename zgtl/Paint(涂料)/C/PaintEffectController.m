@@ -8,20 +8,23 @@
 
 #import "PaintEffectController.h"
 #import "PaintEffectView.h"
-#import "PaintColorModel.h"
+//#import "PaintColorModel.h"
+#import "PaintEffectModel.h"
 
-@interface PaintEffectController ()
+
+@interface PaintEffectController ()<PaintMainDelegate>
 
 //左边的图片数组
-@property (nonatomic, strong) NSArray<id> *pictureArray;
+@property (nonatomic, strong) NSArray<EffectPaintModel *> *paintArray;
 
 //右边的场景数组
-@property (nonatomic, strong) NSArray<id> *sceneArray;
+@property (nonatomic, strong) NSArray<EffectBigPicModel *> *bigPicArray;
 
 //下边预览的数组
-@property (nonatomic, strong) NSArray<id> *perviewArray;
+@property (nonatomic, strong) NSArray<EffectSceneModel *> *perviewArray;
 
 @property (nonatomic, strong) PaintEffectView *paintEffectV;
+
 
 @end
 
@@ -34,6 +37,7 @@
     
     self.paintEffectV = [PaintEffectView new];
     //    paintMainV.backgroundColor = [UIColor purpleColor];
+    self.paintEffectV.delegate = self;
     [self.view addSubview:self.paintEffectV];
     
     [self.paintEffectV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -49,13 +53,24 @@
     //修改参数吧
     NSDictionary *params = @{
                              @"typeId":@(self.typeId),
+                             @"productId":@(self.productId),
                              };
     NetWork *net = [NetWork new];
-    [net PostDataWithUri:@"api/atz/productcolor/ColorPicture" params:params handler:^(NSDictionary *json) {
+    [net PostDataWithUri:@"api/atz/productcolor/EffectPicture" params:params handler:^(NSDictionary *json) {
         
         NSLog(@"%@", json);
         
         if ([json[@"errocde"] intValue] == 0) {
+            
+            _paintArray = [EffectPaintModel mj_objectArrayWithKeyValuesArray:json[@"productlist"]];
+            
+            _bigPicArray = [EffectBigPicModel mj_objectArrayWithKeyValuesArray:json[@"effectpicture"]];
+            
+            _perviewArray = [EffectSceneModel mj_objectArrayWithKeyValuesArray:json[@"scenelist"]];
+            
+            
+            
+            
             
             //        _productArray = [PaintProductModel mj_objectArrayWithKeyValuesArray:json[@"producttypelist"]];
             //
@@ -64,11 +79,21 @@
             //        _listArray = [PaintListModel mj_objectArrayWithKeyValuesArray:json[@"productlist"]];
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.paintEffectV setContentDataWithPaintArr:_paintArray bigPicArr:_bigPicArray perviewArr:_perviewArray];
+                
                 //            [self.paintColorV setContentDataWithProductArr:_productArray colorArr:_colorArray listArr:_listArray];
             });
         }
     }];
 }
+
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"处理点击事件");
+}
+
 
 
 @end

@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PaintMainView.h"
+
 
 @interface PaintColorView : UIView
+
+@property (nonatomic, weak ) id<PaintMainDelegate>delegate;
+
+
+-(void)setContentDataWithColorArr:(NSArray *)colorArr bigPicArr:(NSArray *)bigPicArr perviewArr:(NSArray *)perviewArr;
+
 
 @end

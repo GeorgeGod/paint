@@ -9,6 +9,7 @@
 #import "PaintEffectView.h"
 #import "ZTEffectCollectionCell.h"
 #import "ZTColorCollectionCell.h"
+#import "PaintEffectModel.h"
 
 @interface PaintEffectView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *tlCollectionView; //top left CollectionView
@@ -17,6 +18,16 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *colleBtn; //收藏按钮
 @property (nonatomic, strong) UIButton *shareBtn; //分享按钮
+
+
+//左边的图片数组
+@property (nonatomic, strong) NSArray<EffectPaintModel *> *paintArray;
+
+//右边的场景数组
+@property (nonatomic, strong) NSArray<EffectBigPicModel *> *bigPicArray;
+
+//下边预览的数组
+@property (nonatomic, strong) NSArray<EffectSceneModel *> *perviewArray;
 
 @end
 
@@ -89,10 +100,10 @@
         make.edges.equalTo(trv).insets(UIEdgeInsetsMake(0, 0, 40, 0));
     }];
     //修改预览图片
-    self.trImageView.image = [UIImage imageNamed:@"effect"];
+//    self.trImageView.image = [UIImage imageNamed:@"effect"];
     
     self.titleLabel = [UILabel new];
-    self.titleLabel.text = @"NC5-001 客厅";
+//    self.titleLabel.text = @"NC5-001 客厅";
     [trv addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(trv).offset(20);
@@ -190,11 +201,15 @@
     
 }
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
+//-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+//    return 1;
+//}
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    if ([collectionView isEqual:self.tlCollectionView]) {
+        return self.paintArray.count;
+    } else {
+        return self.perviewArray.count;
+    }
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -202,8 +217,14 @@
         
         ZTEffectCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZTEffectCollectionCell" forIndexPath:indexPath];
         
-        cell.imageView.image = [UIImage imageNamed:@"pic1"];
-        cell.titleLabel.text = @"效果图1";
+        
+        EffectPaintModel *model = self.paintArray[indexPath.row];
+        NSURL *url = [NSURL URLWithString:[BaseUrl stringByAppendingFormat:@"%@", model.url]];
+        [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"pic1"]];
+        cell.titleLabel.text = model.mainTitle;
+        
+//        cell.imageView.image = [UIImage imageNamed:@"pic1"];
+//        cell.titleLabel.text = @"效果图1";
         
         return cell;
     }
@@ -211,13 +232,62 @@
         
         ZTColorCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZTColorCollectionCell" forIndexPath:indexPath];
         
-        cell.imageView.image = [UIImage imageWithColor:[UIColor orangeColor]];
-        cell.titleLabel.text = @"NC6-1001";
+        
+        EffectSceneModel *model = self.perviewArray[indexPath.row];
+        NSURL *url = [NSURL URLWithString:[BaseUrl stringByAppendingFormat:@"%@", model.url]];
+        [cell.imageView sd_setImageWithURL:url];
+        cell.titleLabel.text = model.mainTitle;
+        
+//        cell.imageView.image = [UIImage imageWithColor:[UIColor orangeColor]];
+//        cell.titleLabel.text = @"NC6-1001";
         
         return cell;
         
     }
     return nil;
 }
+
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([collectionView isEqual:self.btCollectionView]) {
+        [self refreshBigPictureWithRow:indexPath.row];
+    } else {
+        [self.delegate collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+    }
+}
+
+/**
+ 刷新右侧的大图
+ 
+ @param row 根据左侧选择的第几个cell的行号
+ */
+-(void)refreshBigPictureWithRow:(NSInteger)row {
+    if (self.bigPicArray.count > row) {
+        EffectBigPicModel *model = self.bigPicArray[row];
+        NSURL *url = [NSURL URLWithString:[BaseUrl stringByAppendingFormat:@"%@", model.url]];
+        [self.trImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"effect"]];
+        self.titleLabel.text = model.mainTitle;
+    } else {
+        self.trImageView.image = [UIImage imageNamed:@"effect"];
+        self.titleLabel.text = @"__";
+    }
+}
+
+
+-(void)setContentDataWithPaintArr:(NSArray *)paintArr bigPicArr:(NSArray *)bigPicArr perviewArr:(NSArray *)perviewArr {
+    
+    self.paintArray = paintArr;
+    self.bigPicArray = bigPicArr;
+    self.perviewArray = perviewArr;
+    
+    [self.tlCollectionView reloadData];
+    [self.btCollectionView reloadData];
+    
+    //默认选中第一行的row
+    [self refreshBigPictureWithRow:0];
+}
+
+
+
 
 @end
